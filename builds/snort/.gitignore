@@ -3,5 +3,6 @@
 .ropeproject
 .settings
 .tox
-**builds/
+/builds
+builds/**
 
