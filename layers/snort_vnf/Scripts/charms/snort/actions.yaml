@@ -1,0 +1,11 @@
+configure-snort:
+  description: "Configures the remote server"
+  params:
+    ip_list:
+      type: "string"
+      default: ""
+      description: "An IP list of all pods Snort is responsible for comma seperated"
+  required:
+    - ip_list
+start-service:
+  description: "Starts the service of the VNF"

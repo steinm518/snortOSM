@@ -1,0 +1,14 @@
+name: snort
+summary: Deploys and manages snort as a VNF
+maintainer: Michael Stein
+description: |
+  This is a deployment of Snort as a VNF.
+tags:
+  - nfv
+subordinate: false
+series:
+  - bionic
+  - xenial
+peers: # This will give HA capabilities to your Proxy Charm
+  snort:
+    interface: snort

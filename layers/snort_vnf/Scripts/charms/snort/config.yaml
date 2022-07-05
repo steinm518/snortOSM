@@ -1,0 +1,6 @@
+options:
+  ip_list:
+    type: "string"
+    default: ""
+    description: "An IP list of all pods Snort is responsible for comma seperated"
+    
