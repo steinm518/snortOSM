@@ -4,16 +4,16 @@ sys.path.append("lib")
 
 from ops.main import main
 from ops.charm import CharmBase
-import io
+from ops.model import ActiveStatus
+"""import io
 import ipaddress
-from packaging import version
 import subprocess
 import os
 import socket
 import shlex
 import traceback
 import yaml
-
+"""
 from shutil import which
 from subprocess import (
     check_call,
@@ -36,28 +36,34 @@ class SnortCharm(CharmBase):
         # self.framework.observe(self.on.upgrade_charm, self.on_upgrade_charm)
 
         # Listen to the touch action event
-        self.framework.observe(self.on.configure_snort_action, self.configure_remote)
+        self.framework.observe(self.on.configure_snort_action, self.configure_snort)
         self.framework.observe(self.on.start_service_action, self.start_service)
+        self.framework.observe(self.on.stop_service, self.stop_service)
 
     def on_config_changed(self, event):
         """Handle changes in configuration"""
         super().on_config_changed(event)
         self.configure_snort(self,event)
+        self.model.unit.status = ActiveStatus()
 
     def on_install(self, event):
         """Called when the charm is being installed"""
         super().on_install(event)
         def installDependencies(self):
+            check_call(["chmod +x dependencies.bash"])
             f = open("dependencies.bash", "r")
             check_call(["bash", f.read()])
         installDependencies(self)
+        check_call(["chmod +x snortService"])
         f= open("snortService","r")
         check_call(["echo",f.read,">","/lib/systemd/system/snort.service"])
         check_call(["systemctl daemon-reload"])
+        self.model.unit.status = ActiveStatus()
 
     def on_start(self, event):
         """Called when the charm is being started"""
         super().on_start(event)
+        self.model.unit.status = ActiveStatus()
         
 
     def configure_snort(self, event):
@@ -70,6 +76,7 @@ class SnortCharm(CharmBase):
             
         else:
             event.fail("Unit is not leader")
+        self.model.unit.status = ActiveStatus()
 
     def start_service(self, event):
         """Start service action."""
@@ -80,6 +87,7 @@ class SnortCharm(CharmBase):
             
         else:
             event.fail("Unit is not leader")
+        self.model.unit.status = ActiveStatus()
     def stop_service(self,event):
         if self.model.unit.is_leader():
             
@@ -87,6 +95,7 @@ class SnortCharm(CharmBase):
             
         else:
             event.fail("Unit is not leader")
+        self.model.unit.status = ActiveStatus()
 
 if __name__ == "__main__":
     main(SnortCharm)
