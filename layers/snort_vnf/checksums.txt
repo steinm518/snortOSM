@@ -1,8 +1,8 @@
 6b699e4302891c45bc87969d65bc60f2	snort_vnf/README.md
-fb39064251acd0e1acda9b4b68957dc1	snort_vnf/snort_vnfd.yaml
+1ba2214f91526d45616b43e35ba4661a	snort_vnf/snort_vnfd.yaml
 1b96efed6095d547172c997610c5b653	snort_vnf/charms/snort/actions.yaml
 9320d1c71a85a09efd818923be31d57b	snort_vnf/charms/snort/config.yaml
 1d21b985365abe8f4e76bf29f720df6d	snort_vnf/charms/snort/metadata.yaml
 9a3d1fe678f74cd2e2bbffae1479fd8a	snort_vnf/charms/snort/src/dependencies.bash
 2bc0a0d789862745ca9f38fa0da934cb	snort_vnf/charms/snort/src/charm.py
-ae699b358a397721969c0dd92acd207a	snort_vnf/cloud_init/cloud_init/cloud-config.txt
+ae699b358a397721969c0dd92acd207a	snort_vnf/cloud_init/cloud-config.txt
