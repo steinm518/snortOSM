@@ -1,3 +1,3 @@
 osm nfpkg-create snort_vnf/  
 osm nspkg-create snort_ns/
-osm ns-create --ns_name snort --nsd_name snort_nsd --vim_account microstack
+#osm ns-create --ns_name snort --nsd_name snort_nsd --vim_account microstack
