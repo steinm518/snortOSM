@@ -11,6 +11,12 @@ vnfd:
             - 
               number-of-instances: 1
               vdu-id: mgmtVM
+      vdu-profile: 
+        - 
+          id: snort_vnfd-VM
+          max-number-of-instances: 1
+          min-number-of-instances: 1
+          
       lcm-operations-configuration: 
         operate-vnf-op-config: 
           day1-2: 
@@ -38,18 +44,14 @@ vnfd:
               initial-config-primitive: 
                 - 
                   execution-environment-ref: snort-ee
-                  name: touch
+                  name: configure-snort
                   parameter: 
                     - 
                       data-type: STRING
                       name: ip_list
                       value: ""
                   seq: 1
-      vdu-profile: 
-        - 
-          id: snort_vnfd-VM
-          max-number-of-instances: 1
-          min-number-of-instances: 1
+      
   ext-cpd: 
     - 
       id: vnf-cp0-ext
@@ -66,7 +68,7 @@ vnfd:
       image: ubuntu16.04
       name: ubuntu16.04
   vdu: 
-    - 
+    - cloud-init-file: cloud-config.txt
       description: snort_vnfd-VM
       id: snort_vnfd-VM
       int-cpd: 
@@ -87,7 +89,7 @@ vnfd:
     - 
       id: snort_vnfd-VM-compute
       virtual-cpu: 
-        num-virtual-cpu: 1
+        num-virtual-cpu: 2
       virtual-memory: 
         size: 8
   virtual-storage-desc: 
