@@ -53,11 +53,11 @@ class SnortCharm(CharmBase):
             check_call(["chmod +x dependencies.bash"])
             f = open("dependencies.bash", "r")
             check_call(["bash", f.read()])
-        installDependencies(self)
-        check_call(["chmod +x snortService"])
-        f= open("snortService","r")
-        check_call(["echo",f.read,">","/lib/systemd/system/snort.service"])
-        check_call(["systemctl daemon-reload"])
+        #installDependencies(self)
+        #check_call(["chmod +x snortService"])
+        #f= open("snortService","r")
+        #check_call(["echo",f.read,">","/lib/systemd/system/snort.service"])
+        #check_call(["systemctl daemon-reload"])
         self.model.unit.status = ActiveStatus()
 
     def on_start(self, event):
