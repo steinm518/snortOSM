@@ -1,1 +1,3 @@
 builds/
+layers/snort_ns.tar.gz
+layers/snort_vnf.tar.gz
