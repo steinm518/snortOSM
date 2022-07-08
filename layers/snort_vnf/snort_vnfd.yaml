@@ -1,6 +1,6 @@
 --- 
 vnfd: 
-  description: "A VNF consisting of 1 VDU connected to two external VL, and one for data and another one for management"
+  description: "A VNF consisting of one machine running snort"
   df: 
     - 
       id: default-df
