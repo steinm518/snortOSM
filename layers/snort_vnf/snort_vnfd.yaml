@@ -31,9 +31,9 @@ vnfd:
     virtual-memory:
       size: 8
   sw-image-desc:
-  - id: "ubuntu_16.04_server"
-    name: "ubuntu_16.04_server"
-    image: "ubuntu_16.04_server"
+  - id: "ubuntu16.04"
+    name: "ubuntu16.04"
+    image: "ubuntu16.04"
   df:
   - id: default-df
     instantiation-level:
@@ -45,6 +45,36 @@ vnfd:
     - id: snort_vnfd-VM
       min-number-of-instances: 1
       max-number-of-instances: 1
+    lcm-operations-configuration:
+      operate-vnf-op-config:
+        day1-2:
+        - config-access:
+            ssh-access:
+              default-user: ubuntu
+              required: true
+          config-primitive:
+          - name: configure-snort
+            execution-environment-ref: snort-ee
+            parameter:
+            - data-type: STRING
+              default-value: ""
+              name: ip_list
+          id: mgmtVM
+          start-service:
+          - name: start-service
+            execution-environment-ref: snort-ee
+          id: mgmtVM
+          stop-service:
+          - name: stop-service
+            execution-environment-ref: snort-ee
+          id: mgmtVM
+          execution-environment-list:
+          - id: snort-ee
+            juju:
+              charm: snort
+              proxy: false
+          
+
     # At least one VDU need to be specified
     # Additional VDUs can be created by copying the
     # VDU descriptor below
@@ -52,7 +82,7 @@ vnfd:
   - id: snort_vnfd-VM
     name: snort_vnfd-VM
     description: snort_vnfd-VM
-    sw-image-desc: "ubuntu_16.04_server"
+    sw-image-desc: "ubuntu16.04"
     virtual-storage-desc:
     - snort_vnfd-VM-storage
     virtual-compute-desc: snort_vnfd-VM-compute

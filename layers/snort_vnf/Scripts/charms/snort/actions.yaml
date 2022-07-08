@@ -9,3 +9,5 @@ configure-snort:
     - ip_list
 start-service:
   description: "Starts the service of the VNF"
+stop-service:
+  description: "Stops the service of the VNF"

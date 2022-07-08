@@ -38,7 +38,7 @@ class SnortCharm(CharmBase):
         # Listen to the touch action event
         self.framework.observe(self.on.configure_snort_action, self.configure_snort)
         self.framework.observe(self.on.start_service_action, self.start_service)
-        self.framework.observe(self.on.stop_service, self.stop_service)
+        self.framework.observe(self.on.stop_service_action, self.stop_service)
 
     def on_config_changed(self, event):
         """Handle changes in configuration"""

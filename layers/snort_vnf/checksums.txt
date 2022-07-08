@@ -1,5 +1,5 @@
 6b699e4302891c45bc87969d65bc60f2	snort_vnf/README.md
-adff0ef07defa93b6b33ead07c3e74e2	snort_vnf/snort_vnfd.yaml
+4be9209612229d55aadefc0a4565659c	snort_vnf/snort_vnfd.yaml
 2c54f794a70429c9e57cbbd56c3413c5	snort_vnf/Scripts/charms/snort/actions.yaml
 9320d1c71a85a09efd818923be31d57b	snort_vnf/Scripts/charms/snort/config.yaml
 1d21b985365abe8f4e76bf29f720df6d	snort_vnf/Scripts/charms/snort/metadata.yaml
