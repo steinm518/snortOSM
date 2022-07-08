@@ -1,0 +1,3 @@
+[submodule "layers/snort_vnf/charms/snort/mod/operator"]
+	path = layers/snort_vnf/charms/snort/mod/operator
+	url = https://github.com/canonical/operator
