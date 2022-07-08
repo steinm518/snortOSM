@@ -29,7 +29,7 @@ vnfd:
     virtual-cpu:
       num-virtual-cpu: 1
     virtual-memory:
-      size: 4096
+      size: 8
   sw-image-desc:
   - id: "ubuntu_16.04_server"
     name: "ubuntu_16.04_server"

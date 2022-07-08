@@ -1,0 +1,3 @@
+osm ns-delete snort
+osm nspkg-delete snort_nsd
+osm nfpkg-delete snort_vnfd
