@@ -1,89 +1,80 @@
---- 
-vnfd: 
-  description: "A VNF consisting of one machine running snort"
-  df: 
-    - 
-      id: default-df
-      instantiation-level: 
-        - 
-          id: default-instantiation-level
-          vdu-level: 
-            - 
-              number-of-instances: 1
-              vdu-id: snort_vnfd-VM
-      vdu-profile: 
-        - 
-          id: snort_vnfd-VM
-          max-number-of-instances: 1
-          min-number-of-instances: 1
-          
-      lcm-operations-configuration: 
-        operate-vnf-op-config: 
-          day1-2: 
-            - 
-              config-access: 
-                ssh-access: 
-                  default-user: ubuntu
-                  required: true
-              config-primitive: 
-                - 
-                  execution-environment-ref: snort-ee
-                  name: configure-snort
-                  parameter: 
-                    - 
-                      data-type: STRING
-                      default-value: ""
-                      name: ip_list
-              execution-environment-list: 
-                - 
-                  id: snort-ee
-                  juju: 
-                    charm: snort
-                    proxy: false
-              id: snort_vnfd-VM
-              
-      
-  ext-cpd: 
-    - 
-      id: vnf-cp0-ext
-      int-cpd: 
-        cpd: eth0-int
-        vdu-id: snort_vnfd-VM
-  id: snort_vnfd
-  mgmt-cp: vnf-cp0-ext
-  product-name: snort_vnfd
-  provider: OSM
-  sw-image-desc: 
-    - 
-      id: ubuntu16.04
-      image: ubuntu16.04
-      name: ubuntu16.04
-  vdu: 
-    - 
-      description: snort_vnfd-VM
-      id: snort_vnfd-VM
-      int-cpd: 
-        - 
-          id: eth0-int
-          virtual-network-interface-requirement: 
-            - 
-              name: eth0
-              virtual-interface: 
-                type: PARAVIRT
-      name: snort_vnfd-VM
-      sw-image-desc: ubuntu16.04
-      virtual-compute-desc: snort_vnfd-VM-compute
-      virtual-storage-desc: 
-        - snort_vnfd-VM-storage
-  version: "1.0"
-  virtual-compute-desc: 
-    - 
-      id: snort_vnfd-VM-compute
-      virtual-cpu: 
-        num-virtual-cpu: 1
-      virtual-memory: 
-        size: 8
-  virtual-storage-desc: 
-    - 
-      id: snort_vnfd-VM-storage
-      size-of-storage: 50
+vnfd:
+  description: A VNF consisting of 1 VDU connected to two external VL, and one for
+    data and another one for management
+  df:
+  - id: default-df
+    instantiation-level:
+    - id: default-instantiation-level
+      vdu-level:
+      - number-of-instances: 1
+        vdu-id: mgmtVM
+    vdu-profile:
+    - id: mgmtVM
+      min-number-of-instances: 1
+    lcm-operations-configuration:
+      operate-vnf-op-config:
+        day1-2:
+        - config-access:
+            ssh-access:
+              default-user: ubuntu
+              required: true
+          config-primitive:
+          - name: configure-snort
+            execution-environment-ref: snort-ee
+            parameter:
+            - data-type: STRING
+              default-value: ""
+              name: ip_list
+          id: mgmtVM
+          execution-environment-list:
+          - id: snort-ee
+            juju:
+              charm: snort
+              proxy: false
+  ext-cpd:
+  - id: vnf-mgmt-ext
+    int-cpd:
+      cpd: mgmtVM-eth0-int
+      vdu-id: mgmtVM
+  - id: vnf-data-ext
+    int-cpd:
+      cpd: dataVM-xe0-int
+      vdu-id: mgmtVM
+  id: snort-vnf
+  mgmt-cp: vnf-mgmt-ext
+  product-name: snort-vnf
+  sw-image-desc:
+  - id: ubuntu16.04
+    image: ubuntu16.04
+    name: ubuntu16.04
+  vdu:
+  - cloud-init-file: cloud-config.txt
+    id: mgmtVM
+    int-cpd:
+    - id: mgmtVM-eth0-int
+      virtual-network-interface-requirement:
+      - name: mgmtVM-eth0
+        position: 1
+        virtual-interface:
+          type: PARAVIRT
+    - id: dataVM-xe0-int
+      virtual-network-interface-requirement:
+      - name: dataVM-xe0
+        position: 2
+        virtual-interface:
+          type: PARAVIRT
+    name: mgmtVM
+    sw-image-desc: ubuntu16.04
+    virtual-compute-desc: mgmtVM-compute
+    virtual-storage-desc:
+    - mgmtVM-storage
+  version: 1.0
+  virtual-compute-desc:
+  - id: mgmtVM-compute
+    virtual-cpu:
+      num-virtual-cpu: 2
+    virtual-memory:
+      size: 8
+  virtual-storage-desc:
+  - id: mgmtVM-storage
+    size-of-storage: 50
