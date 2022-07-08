@@ -29,7 +29,7 @@ vnfd:
           execution-environment-list:
           - id: snort-ee
             juju:
-              charm: snort
+              charm: snort_ubuntu-16.04-amd64.charm
               proxy: false
   ext-cpd:
   - id: vnf-mgmt-ext
