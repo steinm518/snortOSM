@@ -23,12 +23,12 @@ nsd:
     df:
     - id: default-df
       vnf-profile:
-      - id: "1"
+      - id: "snortVNF"
         vnfd-id: snort_vnfd
         virtual-link-connectivity:
         - virtual-link-profile-id: snort_nsd_vld0
           constituent-cpd-id:
-          - constituent-base-element-id: "1"
+          - constituent-base-element-id: "snortVNF"
             constituent-cpd-id: vnf-cp0-ext
     virtual-link-desc:
     - id: snort_nsd_vld0

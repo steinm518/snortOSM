@@ -10,7 +10,7 @@ vnfd:
           vdu-level: 
             - 
               number-of-instances: 1
-              vdu-id: mgmtVM
+              vdu-id: snort_vnfd-VM
       vdu-profile: 
         - 
           id: snort_vnfd-VM
@@ -40,17 +40,8 @@ vnfd:
                   juju: 
                     charm: snort
                     proxy: false
-              id: mgmtVM
-              initial-config-primitive: 
-                - 
-                  execution-environment-ref: snort-ee
-                  name: configure-snort
-                  parameter: 
-                    - 
-                      data-type: STRING
-                      name: ip_list
-                      value: ""
-                  seq: 1
+              id: snort_vnfd-VM
+              
       
   ext-cpd: 
     - 
@@ -68,7 +59,7 @@ vnfd:
       image: ubuntu16.04
       name: ubuntu16.04
   vdu: 
-    - cloud-init-file: cloud-config.txt
+    - 
       description: snort_vnfd-VM
       id: snort_vnfd-VM
       int-cpd: 
@@ -89,7 +80,7 @@ vnfd:
     - 
       id: snort_vnfd-VM-compute
       virtual-cpu: 
-        num-virtual-cpu: 2
+        num-virtual-cpu: 1
       virtual-memory: 
         size: 8
   virtual-storage-desc: 
