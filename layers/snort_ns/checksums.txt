@@ -1,2 +1,2 @@
-3270a084a60113740b851fe4a3786cfc	snort_ns/snort_nsd.yaml
+e3b55d1cdaa14c4176ca04169dfd8049	snort_ns/snort_nsd.yaml
 d533026ffe131868b9c4e262c70de53d	snort_ns/README.md
