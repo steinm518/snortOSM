@@ -8,3 +8,7 @@ bases:
     run-on:
     - name: "ubuntu"
       channel: "16.04"
+parts:
+  charm:
+    prime:
+      - src/*
